@@ -1,4 +1,4 @@
-package com.payonefare.api.dbgw.users.data;
+package com.payonefare.api.dbgw.customers.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.payonefare.api.dbgw.trips.data.Trip;
@@ -38,7 +38,7 @@ public class Customer {
     Type: String
     */
     @Pattern(regexp="(^$|[0-9]{10})")
-    @Column
+    @Column(unique = true)
     private String phone;
 
     /*

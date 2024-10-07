@@ -5,12 +5,11 @@ import com.payonefare.api.dbgw.trips.dto.AdminTripResponseDto;
 import com.payonefare.api.dbgw.trips.dto.CompleteTripDto;
 import com.payonefare.api.dbgw.trips.enums.Status;
 import com.payonefare.api.dbgw.trips.repository.TripRepository;
-import com.payonefare.api.dbgw.trips.utils.Utils;
+import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import jakarta.validation.Valid;
 
-import java.net.URI;
 import java.time.LocalDateTime;
 
 import static io.micronaut.http.HttpHeaders.LOCATION;
@@ -42,7 +41,7 @@ public class TripController {
             Trip savedTrip = tripRepository.save(trip);
             return HttpResponse
                     .created(savedTrip)
-                    .header(LOCATION, utils.location(savedTrip.getId()));
+                    .header(LOCATION, utils.location(savedTrip.getId(), "trips"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -58,10 +57,10 @@ public class TripController {
             Trip trip = tripRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid trip id"));
             trip.setStatus(Status.COMPLETED);
             trip.setAmount(completeTripDto.getAmount());
-            tripRepository.save(trip);
+            tripRepository.update(trip);
             return HttpResponse
                     .noContent()
-                    .header(LOCATION, utils.location(trip.getId()));
+                    .header(LOCATION, utils.location(trip.getId(), "trips"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

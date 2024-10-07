@@ -2,7 +2,8 @@ package com.payonefare.api.dbgw.trips.repository;
 
 import com.payonefare.api.dbgw.trips.data.Trip;
 import com.payonefare.api.dbgw.trips.enums.Status;
-import com.payonefare.api.dbgw.users.data.Customer;
+import com.payonefare.api.dbgw.customers.data.Customer;
+import io.micronaut.data.annotation.Query;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 
@@ -41,7 +42,7 @@ public interface TripRepository extends CrudRepository<Trip, Long> {
     Parameters: Customer object, query time
     Return Type: List[Trip]
      */
-    List<Trip> findByCustomerAndPickupTimeGreaterThan(Customer customer, LocalDateTime pickupTime);
+//    List<Trip> findByCustomerAndPickupTimeGreaterThan(Long customerId, LocalDateTime pickupTime);
 
     /*
     Description: Get all the trips of customer that are completed
@@ -49,5 +50,5 @@ public interface TripRepository extends CrudRepository<Trip, Long> {
     Parameters: Customer object, query time
     Return Type: List[Trip]
      */
-    List<Trip> findByCustomerAndPickupTimeLessThan(Customer customer, LocalDateTime pickupTime);
+//    List<Trip> findByCustomer_IdAndPickupTimeLessThan(Long customerId, LocalDateTime pickupTime);
 }

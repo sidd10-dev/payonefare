@@ -2,6 +2,7 @@ package com.payonefare.api.dbgw.trips.dto;
 
 import com.payonefare.api.dbgw.trips.data.Trip;
 import io.micronaut.core.annotation.Introspected;
+import io.micronaut.serde.annotation.Serdeable;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
 Description: DTO to return all trips for admin page
  */
 @Introspected
+@Serdeable
 public class AdminTripResponseDto {
 
     public AdminTripResponseDto(List<Trip> pending, List<Trip> allotted, List<Trip> completed) {

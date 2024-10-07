@@ -4,7 +4,7 @@ import com.payonefare.api.dbgw.drivers.data.Driver;
 import com.payonefare.api.dbgw.trips.enums.CarType;
 import com.payonefare.api.dbgw.trips.enums.Status;
 import com.payonefare.api.dbgw.trips.enums.TripType;
-import com.payonefare.api.dbgw.users.data.Customer;
+import com.payonefare.api.dbgw.customers.data.Customer;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
@@ -99,6 +99,7 @@ public class Trip {
     Type: User
      */
     @ManyToOne
+    @JoinColumn(name = "customerId")
     private Customer customer;
 
     /*
