@@ -3,11 +3,13 @@ package com.payonefare.api.dbgw.trips.repository;
 import com.payonefare.api.dbgw.trips.data.Trip;
 import com.payonefare.api.dbgw.trips.enums.Status;
 import com.payonefare.api.dbgw.users.data.Customer;
+import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Repository
 public interface TripRepository extends CrudRepository<Trip, Long> {
     /*
     Description: Used to query and return corresponding trips with matching status value

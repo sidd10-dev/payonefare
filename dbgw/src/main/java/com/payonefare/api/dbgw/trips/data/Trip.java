@@ -91,7 +91,7 @@ public class Trip {
     PossibleValues: PENDING, CONFIRMED, COMPLETED
      */
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column()
     private Status status;
 
     /*
@@ -213,5 +213,13 @@ public class Trip {
                 ", customer=" + customer +
                 ", driver=" + driver +
                 '}';
+    }
+
+    /*
+    Set Status to PENDING
+     */
+    @PrePersist
+    public void prePersist() {
+        status = Status.PENDING;
     }
 }
