@@ -1,15 +1,13 @@
 package com.payonefare.api.dbgw.trips.dto;
 
 import com.payonefare.api.dbgw.trips.data.Trip;
-import io.micronaut.core.annotation.Introspected;
 import io.micronaut.serde.annotation.Serdeable;
 
 import java.util.List;
 
-/*
-Description: DTO to return all trips for admin page
+/**
+ * DTO to return all admin trips
  */
-@Introspected
 @Serdeable
 public class AdminTripResponseDto {
 

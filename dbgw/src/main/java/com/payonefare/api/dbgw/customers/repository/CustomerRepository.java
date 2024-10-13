@@ -1,9 +1,12 @@
 package com.payonefare.api.dbgw.customers.repository;
 
 import com.payonefare.api.dbgw.customers.data.Customer;
+import com.payonefare.api.dbgw.trips.data.Trip;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository

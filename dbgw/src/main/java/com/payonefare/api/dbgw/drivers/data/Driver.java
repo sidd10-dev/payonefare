@@ -1,14 +1,9 @@
 package com.payonefare.api.dbgw.drivers.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.payonefare.api.dbgw.trips.data.Trip;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 Name: Driver Entity
@@ -37,17 +32,9 @@ public class Driver {
     Description: Driver Phone
     Type: String
      */
-    @Column
+    @Column(unique = true)
     @Pattern(regexp="(^$|[0-9]{10})")
-    private String driverPhone;
-
-    /*
-    Description: Trips taken by the driver
-    Type: List[Trip]
-     */
-    @JsonIgnore
-    @OneToMany(mappedBy = "driver")
-    private List<Trip> trips = new ArrayList<>();
+    private String phone;
 
     public Long getId() {
         return id;
@@ -65,20 +52,12 @@ public class Driver {
         this.name = name;
     }
 
-    public @Pattern(regexp = "(^$|[0-9]{10})") String getDriverPhone() {
-        return driverPhone;
+    public @Pattern(regexp = "(^$|[0-9]{10})") String getPhone() {
+        return phone;
     }
 
-    public void setDriverPhone(@Pattern(regexp = "(^$|[0-9]{10})") String driverPhone) {
-        this.driverPhone = driverPhone;
-    }
-
-    public List<Trip> getTrips() {
-        return trips;
-    }
-
-    public void setTrips(List<Trip> trips) {
-        this.trips = trips;
+    public void setPhone(@Pattern(regexp = "(^$|[0-9]{10})") String phone) {
+        this.phone = phone;
     }
 
     @Override
@@ -86,7 +65,7 @@ public class Driver {
         return "Driver{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", driverPhone='" + driverPhone + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

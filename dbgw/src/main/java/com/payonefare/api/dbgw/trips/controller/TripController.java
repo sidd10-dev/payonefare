@@ -1,90 +1,105 @@
 package com.payonefare.api.dbgw.trips.controller;
 
 import com.payonefare.api.dbgw.trips.data.Trip;
-import com.payonefare.api.dbgw.trips.dto.AdminTripResponseDto;
 import com.payonefare.api.dbgw.trips.dto.CompleteTripDto;
-import com.payonefare.api.dbgw.trips.enums.Status;
-import com.payonefare.api.dbgw.trips.repository.TripRepository;
+import com.payonefare.api.dbgw.trips.dto.CreateTripDto;
+import com.payonefare.api.dbgw.trips.service.TripService;
 import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static io.micronaut.http.HttpHeaders.LOCATION;
 
 @Controller(value="/trips")
 public class TripController {
-    /*
-    TripRepository Instance
-     */
-    private TripRepository tripRepository;
 
-    /*
-    Utils Instance
-     */
-    private Utils utils;
+    private final TripService tripService;
+    private final Utils utils;
 
-    public TripController(TripRepository tripRepository, Utils utils) {
-        this.tripRepository = tripRepository;
+    private final Logger LOG = LoggerFactory.getLogger(TripController.class);
+
+    public TripController(TripService tripService, Utils utils) {
+        LOG.info("Initialising Trip Controller");
+        this.tripService = tripService;
         this.utils = utils;
+        LOG.info("Initialised Trip Controller");
     }
 
-    /*
-    Request Type: POST
-    Request Details: Create a New Trip
+    /**
+     * POST Endpoint to create a new trip
+     * @param createTripDto
+     * @return HttpResponse with Trip object
      */
     @Post
-    public HttpResponse<Trip> createTrip(@Body @Valid Trip trip) {
-        try {
-            Trip savedTrip = tripRepository.save(trip);
-            return HttpResponse
-                    .created(savedTrip)
-                    .header(LOCATION, utils.location(savedTrip.getId(), "trips"));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public HttpResponse<Trip> createTrip(@Body @Valid CreateTripDto createTripDto) {
+        LOG.debug("REQUEST: Create a new trip");
+        Trip savedTrip = tripService.createTrip(createTripDto);
+        LOG.debug("RESPONSE: Created a new trip with id {}", savedTrip.getId());
+
+        return HttpResponse
+                .created(savedTrip)
+                .header(LOCATION, utils.location(savedTrip.getId(), "trips"));
     }
 
-    /*
-    Request Type: PUT
-    Request Details: Mark a trip as complete
+    /**
+     * PUT endpoint to mark a trip as complete
+     * @param id
+     * @param completeTripDto
+     * @return HttpResponse with Trip object
      */
     @Put("/complete/{id}")
-    public HttpResponse<?> completeTrip(@PathVariable Long id, @Body @Valid CompleteTripDto completeTripDto) {
-        try {
-            Trip trip = tripRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid trip id"));
-            trip.setStatus(Status.COMPLETED);
-            trip.setAmount(completeTripDto.getAmount());
-            tripRepository.update(trip);
-            return HttpResponse
-                    .noContent()
-                    .header(LOCATION, utils.location(trip.getId(), "trips"));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public HttpResponse<Trip> completeTrip(@PathVariable Long id, @Body @Valid CompleteTripDto completeTripDto) {
+        LOG.debug("REQUEST: Mark trip {} as complete", id);
+        Trip trip = tripService.markTripAsComplete(id, completeTripDto);
+        LOG.debug("RESPONSE: Returning Completed trip");
+
+        return HttpResponse
+                .ok(trip)
+                .header(LOCATION, utils.location(trip.getId(), "trips"));
     }
 
-    /*
-    Request Type: GET
-    Request Details: Get all trips for admin
+    /**
+     * GET endpoint to return all pending trips for admin
+     * @return HttpResponse with List of pending trips
      */
-    @Get("/admin")
-    public AdminTripResponseDto getAdminTrip() {
-        return new AdminTripResponseDto(
-                /*
-                Pending Trips sorted by descending Order
-                 */
-                tripRepository.findByStatusOrderByPickupTimeDesc(Status.PENDING),
-                /*
-                Driver allotted trips that are yet to start
-                 */
-                tripRepository.findByStatusAndPickupTimeGreaterThan(Status.CONFIRMED, LocalDateTime.now()),
-                /*
-                All completed trips
-                 */
-                tripRepository.findByStatus(Status.COMPLETED)
-        );
+    @Get("/admin/pending")
+    public HttpResponse<List<Trip>> getPendingTrips() {
+        LOG.debug("REQUEST: Get all pending trips for admin");
+        List<Trip> pendingTrips = tripService.getPendingTrips();
+        LOG.debug("RESPONSE: Sending all pending trips");
+
+        return HttpResponse.ok(pendingTrips);
+    }
+
+    /**
+     * GET endpoint to return all confirmed trips which are not started for admin
+     * @return HttpResponse with List of trips
+     */
+    @Get("/admin/confirmed")
+    public HttpResponse<List<Trip>> getConfirmedNotStartedTrips() {
+        LOG.debug("REQUEST: Get all confirmed trips which are not started yet for admin");
+        List<Trip> confirmedNotStartedTrips = tripService.getConfirmedNotStartedTrips();
+        LOG.debug("RESPONSE: Sending all confirmed trips which are not started yet trips");
+
+        return HttpResponse.ok(confirmedNotStartedTrips);
+    }
+
+    /**
+     * GET endpoint to return all confirmed trips which are not started for admin
+     * @return HttpResponse with List of trips
+     */
+    @Get("/admin/completed")
+    public HttpResponse<List<Trip>> getCompletedTrips() {
+        LOG.debug("REQUEST: Get all completed trips for admin");
+        List<Trip> completedTrips = tripService.getCompletedTrips();
+        LOG.debug("RESPONSE: Sending all completed trips");
+
+        return HttpResponse.ok(completedTrips);
     }
 }

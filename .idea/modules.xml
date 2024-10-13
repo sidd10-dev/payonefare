@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cmservice.main.iml" filepath="$PROJECT_DIR$/.idea/modules/cmservice.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/dbgw.main.iml" filepath="$PROJECT_DIR$/.idea/modules/dbgw.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/payonefare.iml" filepath="$PROJECT_DIR$/.idea/payonefare.iml" />
     </modules>

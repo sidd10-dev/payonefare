@@ -19,6 +19,8 @@ dependencies {
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("org.modelmapper:modelmapper:2.4.4")
+    implementation("io.zipkin.brave:brave-context-slf4j:5.13.9")
     implementation("mysql:mysql-connector-java:5.1.6")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa:4.9.4")
     compileOnly("io.micronaut:micronaut-http-client")

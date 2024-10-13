@@ -1,9 +1,10 @@
 package com.payonefare.api.dbgw.trips.dto;
 
-import io.micronaut.core.annotation.Introspected;
 import io.micronaut.serde.annotation.Serdeable;
 
-@Introspected
+/**
+ * DTO used for marking a trip as complete
+ */
 @Serdeable
 public class CompleteTripDto {
     /*

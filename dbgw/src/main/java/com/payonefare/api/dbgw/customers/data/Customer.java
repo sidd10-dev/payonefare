@@ -1,13 +1,11 @@
 package com.payonefare.api.dbgw.customers.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.payonefare.api.dbgw.trips.data.Trip;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -41,14 +39,6 @@ public class Customer {
     @Column(unique = true)
     private String phone;
 
-    /*
-    Description: List of all trips taken by the user
-    Type: List[Trip]
-    */
-    @JsonIgnore
-    @OneToMany(mappedBy = "customer")
-    private List<Trip> trips = new ArrayList<>();
-
     public Long getId() {
         return id;
     }
@@ -60,7 +50,6 @@ public class Customer {
     public @Pattern(regexp = "(^$|[0-9]{10})") String getPhone() {
         return phone;
     }
-
 
     public void setId(Long id) {
         this.id = id;
@@ -74,17 +63,9 @@ public class Customer {
         this.phone = phone;
     }
 
-    public List<Trip> getTrips() {
-        return trips;
-    }
-
-    public void setTrips(List<Trip> trips) {
-        this.trips = trips;
-    }
-
     @Override
     public String toString() {
-        return "User{" +
+        return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +

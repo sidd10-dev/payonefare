@@ -57,7 +57,6 @@ public class Trip {
     Description: Pickup time which is to be in future to the time of booking
     Type: LocalDateTime
      */
-    @Future
     @Column
     private LocalDateTime pickupTime;
 
@@ -108,6 +107,7 @@ public class Trip {
      */
     @Nullable
     @ManyToOne
+    @JoinColumn(name = "driverId")
     private Driver driver;
 
     public Long getId() {
@@ -142,11 +142,11 @@ public class Trip {
         this.type = type;
     }
 
-    public @Future LocalDateTime getPickupTime() {
+    public LocalDateTime getPickupTime() {
         return pickupTime;
     }
 
-    public void setPickupTime(@Future LocalDateTime pickupTime) {
+    public void setPickupTime(LocalDateTime pickupTime) {
         this.pickupTime = pickupTime;
     }
 
@@ -182,11 +182,11 @@ public class Trip {
         this.status = status;
     }
 
-    public Customer getUser() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setUser(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
