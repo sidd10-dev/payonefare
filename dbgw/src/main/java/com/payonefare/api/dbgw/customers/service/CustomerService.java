@@ -1,10 +1,10 @@
 package com.payonefare.api.dbgw.customers.service;
 
+import com.payonefare.api.common.data.Customer;
+import com.payonefare.api.common.data.Trip;
+import com.payonefare.api.common.dto.CreateCustomerRequestDto;
 import com.payonefare.api.dbgw.consts.CommonConsts;
-import com.payonefare.api.dbgw.customers.data.Customer;
-import com.payonefare.api.dbgw.customers.dto.CreateCustomerDTO;
 import com.payonefare.api.dbgw.customers.repository.CustomerRepository;
-import com.payonefare.api.dbgw.trips.data.Trip;
 import com.payonefare.api.dbgw.trips.repository.TripRepository;
 import jakarta.inject.Singleton;
 import org.modelmapper.ModelMapper;
@@ -98,7 +98,7 @@ public class CustomerService {
      @param createCustomerDTO object
      @return customer object
      */
-    public Customer createCustomer(CreateCustomerDTO createCustomerDTO) {
+    public Customer createCustomer(CreateCustomerRequestDto createCustomerDTO) {
         try {
             LOG.debug("IN: CustomerService::createCustomer");
             /*

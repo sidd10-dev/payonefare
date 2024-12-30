@@ -1,10 +1,10 @@
 package com.payonefare.api.dbgw.drivers.controller;
 
-import com.payonefare.api.dbgw.drivers.data.Driver;
-import com.payonefare.api.dbgw.drivers.dto.AllotDriverDto;
-import com.payonefare.api.dbgw.drivers.dto.CreateDriverDto;
+import com.payonefare.api.common.data.Driver;
+import com.payonefare.api.common.data.Trip;
+import com.payonefare.api.common.dto.AllotDriverDto;
+import com.payonefare.api.common.dto.CreateDriverDto;
 import com.payonefare.api.dbgw.drivers.service.DriverService;
-import com.payonefare.api.dbgw.trips.data.Trip;
 import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;

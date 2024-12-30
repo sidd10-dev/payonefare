@@ -1,7 +1,7 @@
 package com.payonefare.api.dbgw.trips.repository;
 
-import com.payonefare.api.dbgw.trips.data.Trip;
-import com.payonefare.api.dbgw.trips.enums.Status;
+import com.payonefare.api.common.data.Trip;
+import com.payonefare.api.common.enums.Status;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 

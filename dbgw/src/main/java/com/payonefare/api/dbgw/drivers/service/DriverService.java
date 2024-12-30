@@ -1,12 +1,12 @@
 package com.payonefare.api.dbgw.drivers.service;
 
+import com.payonefare.api.common.data.Driver;
+import com.payonefare.api.common.data.Trip;
+import com.payonefare.api.common.dto.AllotDriverDto;
+import com.payonefare.api.common.dto.CreateDriverDto;
+import com.payonefare.api.common.enums.Status;
 import com.payonefare.api.dbgw.consts.CommonConsts;
-import com.payonefare.api.dbgw.drivers.data.Driver;
-import com.payonefare.api.dbgw.drivers.dto.AllotDriverDto;
-import com.payonefare.api.dbgw.drivers.dto.CreateDriverDto;
 import com.payonefare.api.dbgw.drivers.repository.DriverRepository;
-import com.payonefare.api.dbgw.trips.data.Trip;
-import com.payonefare.api.dbgw.trips.enums.Status;
 import com.payonefare.api.dbgw.trips.repository.TripRepository;
 import jakarta.inject.Singleton;
 import org.modelmapper.ModelMapper;

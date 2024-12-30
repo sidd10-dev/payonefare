@@ -1,9 +1,9 @@
 package com.payonefare.api.dbgw.customers.controller;
 
-import com.payonefare.api.dbgw.customers.data.Customer;
-import com.payonefare.api.dbgw.customers.dto.CreateCustomerDTO;
+import com.payonefare.api.common.data.Customer;
+import com.payonefare.api.common.data.Trip;
+import com.payonefare.api.common.dto.CreateCustomerRequestDto;
 import com.payonefare.api.dbgw.customers.service.CustomerService;
-import com.payonefare.api.dbgw.trips.data.Trip;
 import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
@@ -81,7 +81,7 @@ public class CustomerController {
      * @return
      */
     @Post
-    public HttpResponse<Long> createCustomer(@Body @Valid CreateCustomerDTO createCustomerDTO) {
+    public HttpResponse<Long> createCustomer(@Body @Valid CreateCustomerRequestDto createCustomerDTO) {
 
         LOG.debug("REQUEST: Create New Customer");
         Customer savedCustomer = customerService.createCustomer(createCustomerDTO);

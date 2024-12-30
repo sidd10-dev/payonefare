@@ -1,7 +1,6 @@
 package com.payonefare.api.dbgw.customers.repository;
 
-import com.payonefare.api.dbgw.customers.data.Customer;
-import com.payonefare.api.dbgw.trips.data.Trip;
+import com.payonefare.api.common.data.Customer;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 

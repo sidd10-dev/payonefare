@@ -1,8 +1,8 @@
 package com.payonefare.api.dbgw.trips.controller;
 
-import com.payonefare.api.dbgw.trips.data.Trip;
-import com.payonefare.api.dbgw.trips.dto.CompleteTripDto;
-import com.payonefare.api.dbgw.trips.dto.CreateTripDto;
+import com.payonefare.api.common.data.Trip;
+import com.payonefare.api.common.dto.CompleteTripDto;
+import com.payonefare.api.common.dto.CreateTripRequestDto;
 import com.payonefare.api.dbgw.trips.service.TripService;
 import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
@@ -33,13 +33,13 @@ public class TripController {
 
     /**
      * POST Endpoint to create a new trip
-     * @param createTripDto
+     * @param createTripRequestDto
      * @return HttpResponse with Trip object
      */
     @Post
-    public HttpResponse<Trip> createTrip(@Body @Valid CreateTripDto createTripDto) {
+    public HttpResponse<Trip> createTrip(@Body @Valid CreateTripRequestDto createTripRequestDto) {
         LOG.debug("REQUEST: Create a new trip");
-        Trip savedTrip = tripService.createTrip(createTripDto);
+        Trip savedTrip = tripService.createTrip(createTripRequestDto);
         LOG.debug("RESPONSE: Created a new trip with id {}", savedTrip.getId());
 
         return HttpResponse

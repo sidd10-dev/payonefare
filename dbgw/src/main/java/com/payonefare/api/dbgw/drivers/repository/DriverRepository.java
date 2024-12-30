@@ -1,6 +1,6 @@
 package com.payonefare.api.dbgw.drivers.repository;
 
-import com.payonefare.api.dbgw.drivers.data.Driver;
+import com.payonefare.api.common.data.Driver;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 

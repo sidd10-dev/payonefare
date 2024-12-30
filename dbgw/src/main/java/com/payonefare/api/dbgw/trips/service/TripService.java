@@ -1,12 +1,12 @@
 package com.payonefare.api.dbgw.trips.service;
 
+import com.payonefare.api.common.data.Customer;
+import com.payonefare.api.common.data.Trip;
+import com.payonefare.api.common.dto.CompleteTripDto;
+import com.payonefare.api.common.dto.CreateTripRequestDto;
+import com.payonefare.api.common.enums.Status;
 import com.payonefare.api.dbgw.consts.CommonConsts;
-import com.payonefare.api.dbgw.customers.data.Customer;
 import com.payonefare.api.dbgw.customers.repository.CustomerRepository;
-import com.payonefare.api.dbgw.trips.data.Trip;
-import com.payonefare.api.dbgw.trips.dto.CompleteTripDto;
-import com.payonefare.api.dbgw.trips.dto.CreateTripDto;
-import com.payonefare.api.dbgw.trips.enums.Status;
 import com.payonefare.api.dbgw.trips.repository.TripRepository;
 import jakarta.inject.Singleton;
 import org.modelmapper.ModelMapper;
@@ -39,7 +39,7 @@ public class TripService {
      * @param createTripDto Object
      * @return Trip Object
      */
-    public Trip createTrip(CreateTripDto createTripDto) {
+    public Trip createTrip(CreateTripRequestDto createTripDto) {
         try {
             LOG.debug("IN: TripService::createTrip");
             Trip trip = modelMapper.map(createTripDto, Trip.class);
