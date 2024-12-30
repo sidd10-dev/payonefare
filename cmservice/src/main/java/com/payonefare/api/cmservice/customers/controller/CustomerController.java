@@ -5,7 +5,6 @@ import com.payonefare.api.cmservice.customers.service.CustomerService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
