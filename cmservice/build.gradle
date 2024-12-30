@@ -14,13 +14,17 @@ repositories {
 dependencies {
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    annotationProcessor("io.micronaut.data:micronaut-data-processor")
     implementation("io.micronaut.data:micronaut-data-tx-hibernate")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("org.modelmapper:modelmapper:2.4.4")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.zipkin.brave:brave-context-slf4j:5.13.9")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
-    runtimeOnly("com.h2database:h2")
     testImplementation("io.micronaut:micronaut-http-client")
 }
 

@@ -4,10 +4,10 @@
     <annotationProcessing>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
-        <option name="micronaut.processing.annotations" value="com.payonefare.api.dbgw.*" />
-        <option name="micronaut.processing.group" value="com.payonefare.api.dbgw" />
+        <option name="micronaut.processing.annotations" value="com.payonefare.api.cmservice.*" />
+        <option name="micronaut.processing.group" value="com.payonefare.api.cmservice" />
         <option name="micronaut.processing.incremental" value="true" />
-        <option name="micronaut.processing.module" value="dbgw" />
+        <option name="micronaut.processing.module" value="cmservice" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut.data/micronaut-data-processor/4.9.3/b68aad592d741d5ae21a9fd5810b4e47506543ce/micronaut-data-processor-4.9.3.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut.serde/micronaut-serde-processor/2.11.0/80b47e60ad518244c9ad39186ab2823c8b63c3da/micronaut-serde-processor-2.11.0.jar" />
@@ -42,14 +42,14 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.inject/jakarta.inject-api/2.0.1/4c28afe1991a941d7702fe1362c365f0a8641d1e/jakarta.inject-api-2.0.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.javaparser/javaparser-core/3.26.2/795eca30f20fdc110d1a02a1f0e7ad207e17e7c1/javaparser-core-3.26.2.jar" />
         </processorPath>
-        <module name="dbgw.main" />
+        <module name="cmservice.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
-        <option name="micronaut.processing.annotations" value="com.payonefare.api.dbgw.*" />
-        <option name="micronaut.processing.group" value="com.payonefare.api.dbgw" />
+        <option name="micronaut.processing.annotations" value="com.payonefare.api.cmservice.*" />
+        <option name="micronaut.processing.group" value="com.payonefare.api.cmservice" />
         <option name="micronaut.processing.incremental" value="true" />
-        <option name="micronaut.processing.module" value="dbgw" />
+        <option name="micronaut.processing.module" value="cmservice" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut.serde/micronaut-serde-processor/2.11.0/80b47e60ad518244c9ad39186ab2823c8b63c3da/micronaut-serde-processor-2.11.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micronaut.serde/micronaut-serde-api/2.11.0/da7f0a4239bfd2155f5f9ed11f1d3e97e05821e9/micronaut-serde-api-2.11.0.jar" />
@@ -75,7 +75,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.inject/jakarta.inject-api/2.0.1/4c28afe1991a941d7702fe1362c365f0a8641d1e/jakarta.inject-api-2.0.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.javaparser/javaparser-core/3.26.2/795eca30f20fdc110d1a02a1f0e7ad207e17e7c1/javaparser-core-3.26.2.jar" />
         </processorPath>
-        <module name="dbgw.test" />
+        <module name="cmservice.test" />
       </profile>
     </annotationProcessing>
   </component>
