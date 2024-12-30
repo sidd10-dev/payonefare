@@ -1,9 +1,11 @@
 plugins {
     id("io.micronaut.library") version "4.3.2"
+    id("java-library")
+    id("maven-publish")
 }
 
 version = "1.0"
-group = "com.payonefare.api.common"
+group = "com.payonefare.api"
 
 repositories {
     mavenCentral()
@@ -25,6 +27,13 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
 
 java {
     sourceCompatibility = JavaVersion.toVersion("21")
