@@ -1,7 +1,7 @@
 package com.payonefare.api.cmservice.customers.controller;
 
-import com.payonefare.api.cmservice.customers.dto.GetOrCreateCustomerRequestDto;
 import com.payonefare.api.cmservice.customers.service.CustomerService;
+import com.payonefare.api.common.dto.CreateCustomerRequestDto;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -25,13 +25,13 @@ public class CustomerController {
 
     /**
      * Post request to create customer if he does not exist
-     * @param getOrCreateCustomerRequestDto
+     * @param createCustomerRequestDto
      * @return
      */
     @Post
-    public HttpResponse<Long> getOrCreateCustomer(@Valid @Body GetOrCreateCustomerRequestDto getOrCreateCustomerRequestDto) {
-        LOG.debug("REQUEST : Get Or Create Customer, {}", getOrCreateCustomerRequestDto);
-        Long id = customerService.createCustomerIfNotExist(getOrCreateCustomerRequestDto);
+    public HttpResponse<Long> getOrCreateCustomer(@Valid @Body CreateCustomerRequestDto createCustomerRequestDto) {
+        LOG.debug("REQUEST : Get Or Create Customer, {}", createCustomerRequestDto);
+        Long id = customerService.createCustomerIfNotExist(createCustomerRequestDto);
         LOG.debug("RESPONSE : Customer ID, {}", id);
         return HttpResponse.ok(id);
     }

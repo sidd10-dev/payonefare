@@ -1,8 +1,9 @@
 package com.payonefare.api.cmservice.customers.service;
 
 import com.payonefare.api.cmservice.clients.DbgwClient;
-import com.payonefare.api.cmservice.customers.dto.GetOrCreateCustomerRequestDto;
+import com.payonefare.api.common.dto.CreateCustomerRequestDto;
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,15 +26,19 @@ public class CustomerService {
      * @param getOrCreateCustomerRequestDto
      * @return
      */
-    public Long createCustomerIfNotExist(GetOrCreateCustomerRequestDto getOrCreateCustomerRequestDto) {
+    public Long createCustomerIfNotExist(CreateCustomerRequestDto createCustomerRequestDto) {
         try {
             LOG.debug("IN: CustomerService::createCustomerIfNotExist");
-            HttpResponse<Long> response = httpClient.findCustomerByPhone(getOrCreateCustomerRequestDto.getPhone());
+            HttpResponse<Long> response = httpClient.findCustomerByPhone(createCustomerRequestDto.getPhone());
+
+            if (response.status() != HttpStatus.OK) {
+                throw new RuntimeException(response.body().toString());
+            }
 
             // Create new customer in DB
             if (null == response) {
                 LOG.debug("Customer does not exist in DB. Create new customer");
-                response = httpClient.createCustomer(getOrCreateCustomerRequestDto);
+                response = httpClient.createCustomer(createCustomerRequestDto);
             }
 
             LOG.debug("OUT: CustomerService::createCustomerIfNotExist");
