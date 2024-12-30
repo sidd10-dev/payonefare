@@ -1,9 +1,8 @@
 package com.payonefare.api.cmservice.customers.service;
 
 import com.payonefare.api.cmservice.clients.DbgwClient;
-import com.payonefare.api.cmservice.customers.dto.request.GetOrCreateCustomerRequestDto;
+import com.payonefare.api.cmservice.customers.dto.GetOrCreateCustomerRequestDto;
 import io.micronaut.http.HttpResponse;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

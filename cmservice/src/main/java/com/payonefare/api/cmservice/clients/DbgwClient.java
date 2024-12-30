@@ -1,6 +1,6 @@
 package com.payonefare.api.cmservice.clients;
 
-import com.payonefare.api.cmservice.customers.dto.request.GetOrCreateCustomerRequestDto;
+import com.payonefare.api.cmservice.customers.dto.GetOrCreateCustomerRequestDto;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Get;

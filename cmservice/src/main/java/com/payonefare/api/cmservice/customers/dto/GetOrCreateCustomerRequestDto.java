@@ -1,4 +1,4 @@
-package com.payonefare.api.cmservice.customers.dto.request;
+package com.payonefare.api.cmservice.customers.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.validation.constraints.NotNull;
