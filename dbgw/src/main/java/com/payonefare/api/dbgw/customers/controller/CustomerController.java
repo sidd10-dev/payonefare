@@ -36,13 +36,13 @@ public class CustomerController {
      * @return Customer Object
      */
     @Get("/{phone}")
-    public HttpResponse<Customer> findCustomerByPhone(@PathVariable String phone) {
+    public HttpResponse<Long> findCustomerByPhone(@PathVariable String phone) {
 
         LOG.debug("REQUEST: Find Customer By Phone {}", phone);
         Customer customer = customerService.findCustomerByPhone(phone);
         LOG.debug("RESPONSE: Returning Customer with Phone {}", phone);
 
-        return HttpResponse.ok(customer);
+        return customer != null ? HttpResponse.ok(customer.getId()) : null;
     }
 
     /**
@@ -60,6 +60,11 @@ public class CustomerController {
         return HttpResponse.ok(pastTrips);
     }
 
+    /**
+     * GET request endpoint to get future trips of a customer
+     * @param phone
+     * @return List<Trip>
+     */
     @Get("/{phone}/trips/future")
     public HttpResponse<List<Trip>> findCustomerFutureTrips(@PathVariable String phone) {
 
@@ -76,14 +81,14 @@ public class CustomerController {
      * @return
      */
     @Post
-    public HttpResponse<Customer> createCustomer(@Body @Valid CreateCustomerDTO createCustomerDTO) {
+    public HttpResponse<Long> createCustomer(@Body @Valid CreateCustomerDTO createCustomerDTO) {
 
         LOG.debug("REQUEST: Create New Customer");
         Customer savedCustomer = customerService.createCustomer(createCustomerDTO);
         LOG.debug("RESPONSE: Newly created Customer Object with ID {}", savedCustomer.getId());
 
         return HttpResponse
-                .created(savedCustomer)
+                .created(savedCustomer.getId())
                 .header(LOCATION, utils.location(savedCustomer.getId(), "customers"));
     }
 }

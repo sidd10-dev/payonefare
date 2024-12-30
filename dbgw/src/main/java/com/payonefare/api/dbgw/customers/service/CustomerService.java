@@ -49,7 +49,7 @@ public class CustomerService {
             return customer.get();
         } catch (Exception e) {
             LOG.error(e.getMessage());
-            throw new RuntimeException(e);
+            return null;
         }
     }
 
