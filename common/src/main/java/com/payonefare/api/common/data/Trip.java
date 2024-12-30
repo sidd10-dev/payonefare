@@ -22,7 +22,7 @@ public class Trip {
     Type: Long
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
     /*
