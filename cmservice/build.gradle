@@ -5,16 +5,20 @@ plugins {
 }
 
 version = "0.1"
-group = "com.payonefare.api.cmservice"
+group = "com.payonefare.api"
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
+
+    implementation "com.payonefare.api:common:1.0"
+
     implementation("io.micronaut.data:micronaut-data-tx-hibernate")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
@@ -66,5 +70,4 @@ micronaut {
 tasks.named("dockerfileNative") {
     jdkVersion = "21"
 }
-
 
