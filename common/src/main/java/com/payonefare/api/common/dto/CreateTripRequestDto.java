@@ -7,6 +7,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -32,7 +33,7 @@ public class CreateTripRequestDto {
     @Enumerated(EnumType.STRING)
     private CarType car;
 
-    @NotEmpty
+    @NotNull
     private Long customerId;
 
     public @Size(min = 5, max = 1000) String getPickupAddress() {

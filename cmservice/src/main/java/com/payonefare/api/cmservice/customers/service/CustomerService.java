@@ -31,14 +31,12 @@ public class CustomerService {
             LOG.debug("IN: CustomerService::createCustomerIfNotExist");
             HttpResponse<Long> response = httpClient.findCustomerByPhone(createCustomerRequestDto.getPhone());
 
-            if (response.status() != HttpStatus.OK) {
-                throw new RuntimeException(response.body().toString());
-            }
-
             // Create new customer in DB
-            if (null == response) {
+            if (response.status() == HttpStatus.NOT_FOUND) {
                 LOG.debug("Customer does not exist in DB. Create new customer");
                 response = httpClient.createCustomer(createCustomerRequestDto);
+            } else if (response.status() != HttpStatus.OK) {
+                throw new RuntimeException(response.body().toString());
             }
 
             LOG.debug("OUT: CustomerService::createCustomerIfNotExist");

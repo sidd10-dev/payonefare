@@ -6,6 +6,7 @@ import com.payonefare.api.common.dto.CreateCustomerRequestDto;
 import com.payonefare.api.dbgw.customers.service.CustomerService;
 import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -42,7 +43,7 @@ public class CustomerController {
         Customer customer = customerService.findCustomerByPhone(phone);
         LOG.debug("RESPONSE: Returning Customer with Phone {}", phone);
 
-        return customer != null ? HttpResponse.ok(customer.getId()) : null;
+        return customer != null ? HttpResponse.ok(customer.getId()) : HttpResponse.status(HttpStatus.NOT_FOUND);
     }
 
     /**

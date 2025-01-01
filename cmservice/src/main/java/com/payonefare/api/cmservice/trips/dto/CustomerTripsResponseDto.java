@@ -1,9 +1,11 @@
 package com.payonefare.api.cmservice.trips.dto;
 
 import com.payonefare.api.common.data.Trip;
+import io.micronaut.serde.annotation.Serdeable;
 
 import java.util.List;
 
+@Serdeable
 public class CustomerTripsResponseDto {
     private List<Trip> past;
     private List<Trip> upcoming;

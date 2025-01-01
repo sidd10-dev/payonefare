@@ -5,11 +5,14 @@ import com.payonefare.api.cmservice.trips.service.TripService;
 import com.payonefare.api.common.dto.CreateTripRequestDto;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller("/trips")
+@ExecuteOn(TaskExecutors.BLOCKING)
 public class TripController {
 
     private final Logger LOG = LoggerFactory.getLogger(TripController.class);
