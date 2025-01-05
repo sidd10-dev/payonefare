@@ -44,7 +44,7 @@ public class DriverService {
 
             Optional<Driver> optionalDriver = driverRepository.findByPhone(phone);
             if (optionalDriver.isEmpty()) {
-                throw new RuntimeException(CommonConsts.DRIVER_NOT_FOUND);
+                return null;
             }
 
             LOG.debug("Found Driver with Phone {}", optionalDriver.get().getPhone());

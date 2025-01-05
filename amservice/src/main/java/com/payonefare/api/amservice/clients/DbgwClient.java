@@ -20,7 +20,7 @@ public interface DbgwClient {
     HttpResponse<Driver> getDriverByPhone(@PathVariable String phone);
 
     @Post("/drivers")
-    HttpResponse<Driver> createNewDriver(CreateDriverDto createDriverDto);
+    HttpResponse<Driver> createNewDriver(@Body @Valid CreateDriverDto createDriverDto);
 
     @Put("/drivers/assign/{tripId}")
     HttpResponse<Trip> assignDriverToTrip(@PathVariable Long tripId, @Body @Valid AllotDriverDto allotDriverDto);

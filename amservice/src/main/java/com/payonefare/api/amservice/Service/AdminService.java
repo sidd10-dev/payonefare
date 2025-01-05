@@ -41,8 +41,9 @@ public class AdminService {
             HttpResponse<Driver> response = httpClient.getDriverByPhone(allotDriverDto.getPhone());
             if (response.status() == HttpStatus.NOT_FOUND) {
                 // Driver not found. Create a new entry
-                CreateDriverDto newDriver = new CreateDriverDto(allotDriverDto.getName(), allotDriverDto.getPhone());
-                response = httpClient.createNewDriver(newDriver);
+                LOG.debug("Creating new Driver with name : {} and phone : {}", allotDriverDto.getName(), allotDriverDto.getPhone());
+//                CreateDriverDto newDriver = new CreateDriverDto(allotDriverDto.getName(), allotDriverDto.getPhone());
+                response = httpClient.createNewDriver(new CreateDriverDto(allotDriverDto.getName(), allotDriverDto.getPhone()));
             }
 
             if (response.status() != HttpStatus.OK) {

@@ -7,6 +7,7 @@ import com.payonefare.api.common.dto.CreateDriverDto;
 import com.payonefare.api.dbgw.drivers.service.DriverService;
 import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import jakarta.validation.Valid;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,9 @@ public class DriverController {
 
         LOG.debug("REQUEST: Get Driver With Phone {}", phone);
         Driver driver = driverService.getDriverByPhone(phone);
+        if (null == driver) {
+            return HttpResponse.status(HttpStatus.NOT_FOUND);
+        }
         LOG.debug("RESPONSE: Returning Driver with Phone {}", phone);
 
         return HttpResponse.
