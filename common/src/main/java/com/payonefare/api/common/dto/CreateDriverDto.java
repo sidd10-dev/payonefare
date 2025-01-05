@@ -18,6 +18,11 @@ public class CreateDriverDto {
     @Pattern(regexp="(^$|[0-9]{10})")
     private String phone;
 
+    public CreateDriverDto(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
     public @Size(min = 2) String getName() {
         return name;
     }

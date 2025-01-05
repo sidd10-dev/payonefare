@@ -98,7 +98,7 @@ public class DriverService {
             LOG.debug("Got Trip: {}", trip);
 
             // Get Driver Object
-            Optional<Driver> optionalDriver = driverRepository.findById(allotDriverDto.getDriverId());
+            Optional<Driver> optionalDriver = driverRepository.findByPhone(allotDriverDto.getPhone());
             if (optionalDriver.isEmpty()) {
                 throw new RuntimeException(CommonConsts.DRIVER_NOT_FOUND);
             }

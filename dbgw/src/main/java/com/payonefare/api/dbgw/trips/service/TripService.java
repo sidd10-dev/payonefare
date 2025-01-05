@@ -35,6 +35,22 @@ public class TripService {
     }
 
     /**
+     * Service function to query a trip based on ID
+     * @param id
+     * @return
+     */
+    public Trip getTrip(Long id) {
+        try {
+            LOG.debug("IN : TripService::getTrip");
+            LOG.debug("OUT : TripService::getTrip");
+            return tripRepository.findById(id).orElse(null);
+        } catch (Exception e) {
+            LOG.error(e.getMessage());
+            throw e;
+        }
+    }
+
+    /**
      * This function creates a new trip
      * @param createTripDto Object
      * @return Trip Object

@@ -6,12 +6,12 @@ import com.payonefare.api.common.dto.CreateTripRequestDto;
 import com.payonefare.api.dbgw.trips.service.TripService;
 import com.payonefare.api.dbgw.utils.Utils;
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static io.micronaut.http.HttpHeaders.LOCATION;
@@ -62,6 +62,19 @@ public class TripController {
         return HttpResponse
                 .ok(trip)
                 .header(LOCATION, utils.location(trip.getId(), "trips"));
+    }
+
+    /**
+     * GET endpoint to get a request by id
+     * @param id
+     * @return
+     */
+    @Get("/{id}")
+    public HttpResponse<Trip> getTripById(@PathVariable Long id) {
+        LOG.debug("REQUEST: Get trip by id {}", id);
+        Trip trip = tripService.getTrip(id);
+        LOG.debug("RESPONSE: Get trip by id {}", id);
+        return null == trip ? HttpResponse.status(HttpStatus.NOT_FOUND) : HttpResponse.ok(trip);
     }
 
     /**

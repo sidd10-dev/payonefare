@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import static io.micronaut.http.HttpHeaders.LOCATION;
 
-@Controller("/driver")
+@Controller("/drivers")
 public class DriverController {
 
     private final Utils utils;
@@ -72,7 +72,7 @@ public class DriverController {
     @Put("/assign/{tripId}")
     public HttpResponse<Trip> assignDriverToTrip(@PathVariable Long tripId, @Body @Valid AllotDriverDto allotDriverDto) {
 
-        LOG.debug("REQUEST: Assign Driver {} to Trip {}", allotDriverDto.getDriverId(), tripId);
+        LOG.debug("REQUEST: Assign Driver {} to Trip {}", allotDriverDto.getName(), tripId);
         Trip trip = driverService.assignDriverToTrip(tripId, allotDriverDto);
         LOG.debug("RESPONSE: Returning Updated Trip Details");
 

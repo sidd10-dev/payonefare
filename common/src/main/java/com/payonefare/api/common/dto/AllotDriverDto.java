@@ -2,6 +2,8 @@ package com.payonefare.api.common.dto;
 
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 /**
@@ -9,18 +11,31 @@ import jakarta.validation.constraints.Size;
  */
 @Serdeable
 public class AllotDriverDto {
-    @NotEmpty
-    private Long driverId;
+    @NotNull
+    @Pattern(regexp="(^$|[0-9]{10})")
+    private String phone;
+
+    @NotNull
+    @Size(min=2)
+    private String name;
 
     @Size(min=4)
     private String vehicleNo;
 
-    public @NotEmpty Long getDriverId() {
-        return driverId;
+    public @NotNull @Pattern(regexp = "(^$|[0-9]{10})") String getPhone() {
+        return phone;
     }
 
-    public void setDriverId(@NotEmpty Long driverId) {
-        this.driverId = driverId;
+    public void setPhone(@NotNull @Pattern(regexp = "(^$|[0-9]{10})") String phone) {
+        this.phone = phone;
+    }
+
+    public @NotNull @Size(min = 2) String getName() {
+        return name;
+    }
+
+    public void setName(@NotNull @Size(min = 2) String name) {
+        this.name = name;
     }
 
     public @Size(min = 4) String getVehicleNo() {
